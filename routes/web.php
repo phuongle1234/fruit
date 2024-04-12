@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\CateloryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,19 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {  return view('pages.catelory'); })->name("home")->middleware('auth');
 
 Route::group( [ 'prefix' => 'auth', 'as' => 'auth.' ], function () {
     Route::get('/login', function () { return view('pages.login'); }  )->name("login");
     Route::post('/login', [ AuthController::class, 'login' ]  )->name("login");
 } );
+
+Route::group( [ 'middleware' => 'auth' ], function () {
+    Route::get('/', [ CateloryController::class, 'index' ] )->name("home");
+
+    Route::group( [ 'prefix' => 'Catelory', 'as' => 'catelory' ], function () {
+        Route::post('/', [ CateloryController::class, 'create' ]  )->name(".create");
+        Route::post('/update/{id}', [ CateloryController::class, 'update' ]  )->name(".update");
+        Route::post('/delete/{id}', [ CateloryController::class, 'destroy' ]  )->name(".delete");
+    });
+
+});
