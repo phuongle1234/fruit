@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CateloryController;
+use App\Http\Controllers\ProdcutController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,20 @@ Route::group( [ 'middleware' => 'auth' ], function () {
         Route::post('/', [ CateloryController::class, 'create' ]  )->name(".create");
         Route::post('/update/{id}', [ CateloryController::class, 'update' ]  )->name(".update");
         Route::post('/delete/{id}', [ CateloryController::class, 'destroy' ]  )->name(".delete");
+    });
+
+    Route::group( [ 'prefix' => 'Prodcut', 'as' => 'prodcut' ], function () {
+        Route::get('/', [ ProdcutController::class, 'index' ]  )->name(".index");
+        Route::post('/', [ ProdcutController::class, 'store' ]  )->name(".create");
+        Route::post('/update/{id}', [ ProdcutController::class, 'update' ]  )->name(".update");
+        Route::post('/delete/{id}', [ ProdcutController::class, 'destroy' ]  )->name(".delete");
+    });
+
+    Route::group( [ 'prefix' => 'Invoice', 'as' => 'invoice' ], function () {
+        Route::get('/', [ InvoiceController::class, 'index' ]  )->name(".index");
+        Route::post('/', [ InvoiceController::class, 'store' ]  )->name(".create");
+        // Route::post('/update/{id}', [ ProdcutController::class, 'update' ]  )->name(".update");
+        // Route::post('/delete/{id}', [ ProdcutController::class, 'destroy' ]  )->name(".delete");
     });
 
 });

@@ -12,17 +12,26 @@
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 .w3-third img{margin-bottom: -6px; opacity: 0.8; cursor: pointer}
 .w3-third img:hover{opacity: 1}
+.w3-button.active {
+  background-color: #9E9E9E !important;
+}
+
 </style>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
+
+@php
+  $as =  request()->route()->action['as'];
+@endphp
+
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:3;width:300px;font-weight:bold" id="mySidebar"><br>
-  <h3 class="w3-padding-64 w3-center"><b>SOME<br>NAME</b></h3>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
-  <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">Catelory</a> 
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">Prodcut</a> 
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+  <h3 class="w3-padding-64 w3-center"><b>FRUIT</b></h3>
+  <a href="javascript:void(0)"  class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
+  <a href="{{ route('home') }}"  class="w3-bar-item w3-button {{ $as == 'home' ? 'active' : '' }}">Catelory</a> 
+  <a href="{{ route('prodcut.index') }}"  class="w3-bar-item w3-button {{ $as == 'prodcut.index' ? 'active' : '' }}">Prodcut</a> 
+  <a href="{{ route('invoice.index') }}"  class="w3-bar-item w3-button {{ $as == 'invoice.index' ? 'active' : '' }}"> Invoice </a>
 </nav>
 
 <!-- Top menu on small screens -->
@@ -48,6 +57,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- End page content -->
 </div>
 
+@yield('custum_js')
 
 </body>
 </html>

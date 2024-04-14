@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('category_id');
-            $table->tinyInteger('unit');
-            $table->tinyInteger('price');
-
+            $table->enum('unit', [ 'kg', 'pcs', 'pack' ] );
+            $table->integer('price');
+            
             $table->timestamps();
             $table->softDeletes();
             // relation ship

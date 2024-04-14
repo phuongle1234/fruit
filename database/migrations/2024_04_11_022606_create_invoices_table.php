@@ -20,9 +20,9 @@ class CreateInvoicesTable extends Migration
 
             $table->unsignedBigInteger('product_id');
 
-            $table->tinyInteger('quantity');
+            $table->text('customer_name');
 
-            $table->tinyInteger('amount');
+            $table->integer('amount');
 
             $table->softDeletes();
 
