@@ -72,11 +72,11 @@ tr:nth-child(even) {
               <tr>
           <form method="POST" action="{{ route('prodcut.update', ['id' => $row->id]) }}" >
                 @csrf
-                <th>No.{{ $k }}</th>
+                <th>No.{{ $k + 1 }}</th>
                 
                 <th>
                     <select name="category_id"  >
-                      @foreach( $cate->get() as $k => $r )
+                      @foreach( $cate->withTrashed()->get() as $k => $r )
                         <option value="{{ $r->id }}" {{ $row->category_id == $r->id ? 'selected' : '' }} >{{ $r->name }}</option>
                       @endforeach
                     </select>

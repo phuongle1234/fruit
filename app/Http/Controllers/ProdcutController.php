@@ -112,11 +112,12 @@ class ProdcutController extends Controller
     {
         try {
             
-            $item = Product::find($id)->delete();
+            $item = Product::where('id',$id)->delete();
 
             return redirect()->back();
 
         }catch( \Exception $e ){
+            dd($e );
             Log::debug($e->getMessage());
             return redirect()->back()->withErrors( trans("auth.failed") );
         }

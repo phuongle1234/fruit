@@ -20,7 +20,11 @@ class CreateInvoicesTable extends Migration
 
             $table->unsignedBigInteger('product_id');
 
+            $table->string('code');
+            
             $table->text('customer_name');
+            
+            $table->integer('quantity');
 
             $table->integer('amount');
 

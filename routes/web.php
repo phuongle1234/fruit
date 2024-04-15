@@ -43,7 +43,7 @@ Route::group( [ 'middleware' => 'auth' ], function () {
         Route::get('/', [ InvoiceController::class, 'index' ]  )->name(".index");
         Route::post('/', [ InvoiceController::class, 'store' ]  )->name(".create");
         // Route::post('/update/{id}', [ ProdcutController::class, 'update' ]  )->name(".update");
-        // Route::post('/delete/{id}', [ ProdcutController::class, 'destroy' ]  )->name(".delete");
+        Route::post('/delete/{code}', [ InvoiceController::class, 'destroy' ]  )->name(".delete");
     });
 
 });
